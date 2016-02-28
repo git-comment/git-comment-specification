@@ -29,6 +29,14 @@ The fields of a comment are (in order):
     Required to not be empty.
 4. `amender` - Person who committed the comment into git, in the same
     format as the author. Required to not be empty.
+5. `links:` - One or many reference URLs relating to the comment. Identifiers
+    and URLs follow on subsequent lines preceded by an asterisk in the format
+
+        * [identifier] <[URL]>
+
+    where `identifier` is a string composed of alphanumeric characters, dashes,
+    spaces, and underscores, which must be unique in the collection of links.
+    URL must be fully qualified with the protocol. The link key is optional.
 
 After the fields, there is a single empty line, then the content of the
 comment, which can be multiple lines.
@@ -40,6 +48,9 @@ commit 0155eb4229851634a0f03eb265b69f5a2d56f341
 file src/main.c:12
 author Delisa Mason <name@example.com> 1243040974 -0900
 amender Delisa Mason <name@example.com> 1243040974 -0900
+links:
+* Synchronization URL <https://example.com/project/issues/14/comments/123>
+* Related RFC <https://example.com/project/proposals/98>
 
 Too many levels of indentation here.
 
