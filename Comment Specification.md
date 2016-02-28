@@ -1,3 +1,7 @@
+---
+Version: 0.1.0
+---
+
 # Comment Specification
 
 Comments are regular git objects, stored in a format similar to tags,
