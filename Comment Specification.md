@@ -4,10 +4,18 @@ Version: 0.1.0
 
 # Comment Specification
 
-Comments are regular git objects, stored in a format similar to tags,
-with the addition of file and line references and a flag for deletion.
-The fields of a comment are a single keyword followed by a space
-and the value. They are (in order):
+Comments are regular git objects, stored in a format similar to tags.
+
+## Field Types
+
+The fields of a comment are formatted as:
+* A single keyword followed by a space and the value, or
+* A single keyword ending in a colon followed by subsequent lines prefixed by an
+  asterisk.
+
+## Field Enumeration
+
+The fields of a comment are (in order):
 
 1. `commit` - Full hash of the commit to which the comment is attached.
     Required to be not empty.
