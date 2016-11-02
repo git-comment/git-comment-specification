@@ -4,10 +4,18 @@ Version: 0.1.0
 
 # Comment Specification
 
-Comments are regular git objects, stored in a format similar to tags,
-with the addition of file and line references and a flag for deletion.
-The fields of a comment are a single keyword followed by a space
-and the value. They are (in order):
+Comments are regular git objects, stored in a format similar to tags.
+
+## Field Types
+
+The fields of a comment are formatted as:
+* A single keyword followed by a space and the value, or
+* A single keyword ending in a colon followed by subsequent lines prefixed by an
+  asterisk.
+
+## Field Enumeration
+
+The fields of a comment are (in order):
 
 1. `commit` - Full hash of the commit to which the comment is attached.
     Required to be not empty.
@@ -21,6 +29,14 @@ and the value. They are (in order):
     Required to not be empty.
 4. `amender` - Person who committed the comment into git, in the same
     format as the author. Required to not be empty.
+5. `links:` - One or many reference URLs relating to the comment. Identifiers
+    and URLs follow on subsequent lines preceded by an asterisk in the format
+
+        * [identifier] <[URL]>
+
+    where `identifier` is a string composed of alphanumeric characters, dashes,
+    spaces, and underscores, which must be unique in the collection of links.
+    URL must be fully qualified with the protocol. The link key is optional.
 
 After the fields, there is a single empty line, then the content of the
 comment, which can be multiple lines.
@@ -32,6 +48,9 @@ commit 0155eb4229851634a0f03eb265b69f5a2d56f341
 file src/main.c:12
 author Delisa Mason <name@example.com> 1243040974 -0900
 amender Delisa Mason <name@example.com> 1243040974 -0900
+links:
+* Synchronization URL <https://example.com/project/issues/14/comments/123>
+* Related RFC <https://example.com/project/proposals/98>
 
 Too many levels of indentation here.
 
